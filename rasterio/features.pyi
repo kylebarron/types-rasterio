@@ -1,20 +1,93 @@
-from rasterio import warp as warp
-from rasterio.dtypes import can_cast_dtype as can_cast_dtype, get_minimum_dtype as get_minimum_dtype, validate_dtype as validate_dtype
+from typing import Dict, Iterable, Optional, Sequence, Tuple, TypeVar, Union
+
+import numpy as np
+from affine import Affine
+from numpy.typing import ArrayLike, NBitBase, NDArray
+
 from rasterio.enums import MergeAlg as MergeAlg
-from rasterio.env import ensure_env as ensure_env
-from rasterio.errors import ShapeSkipWarning as ShapeSkipWarning
-from rasterio.rio.helpers import coords as coords
-from rasterio.transform import Affine as Affine, IDENTITY as IDENTITY, guard_transform as guard_transform, rowcol as rowcol
+from rasterio.io import DatasetReader
 from rasterio.windows import Window as Window
-from typing import Any
 
-log: Any
+Geometry = Dict
+RasterSource = ArrayLike
+NumType = Union[int, float]
+T = TypeVar("T", bound=NBitBase)
 
-def geometry_mask(geometries, out_shape, transform, all_touched: bool = ..., invert: bool = ...): ...
-def shapes(source, mask: Any | None = ..., connectivity: int = ..., transform=...) -> None: ...
-def sieve(source, size, out: Any | None = ..., mask: Any | None = ..., connectivity: int = ...): ...
-def rasterize(shapes, out_shape: Any | None = ..., fill: int = ..., out: Any | None = ..., transform=..., all_touched: bool = ..., merge_alg=..., default_value: int = ..., dtype: Any | None = ...): ...
-def bounds(geometry, north_up: bool = ..., transform: Any | None = ...): ...
-def geometry_window(dataset, shapes, pad_x: int = ..., pad_y: int = ..., north_up: Any | None = ..., rotated: Any | None = ..., pixel_precision: Any | None = ..., boundless: bool = ...): ...
-def is_valid_geom(geom): ...
-def dataset_features(src, bidx: Any | None = ..., sampling: int = ..., band: bool = ..., as_mask: bool = ..., with_nodata: bool = ..., geographic: bool = ..., precision: int = ...) -> None: ...
+
+def geometry_mask(
+    geometries: Iterable[Geometry],
+    out_shape: Sequence[int],
+    transform: Affine,
+    all_touched: bool = ...,
+    invert: bool = ...,
+) -> NDArray[np.bool_]:
+    ...
+
+
+def shapes(
+    source: NDArray[T],
+    mask: Optional[NDArray[np.bool_]] = ...,
+    connectivity: int = ...,
+    transform: Affine = ...,
+) -> Iterable[Geometry, T]:
+    ...
+
+
+def sieve(
+    source: NDArray[T],
+    size: int,
+    out: Optional[NDArray[T]] = ...,
+    mask: Optional[NDArray[np.bool_]] = ...,
+    connectivity: int = ...,
+) -> NDArray[T]:
+    ...
+
+
+def rasterize(
+    shapes: Iterable[Union[Tuple[Geometry, T], Geometry]],
+    out_shape: Tuple[int, int] = ...,
+    fill: int = ...,
+    out: Optional[NDArray[T]] = ...,
+    transform: Affine = ...,
+    all_touched: bool = ...,
+    merge_alg: MergeAlg = ...,
+    default_value: int = ...,
+    dtype: T = ...,
+) -> NDArray[T]:
+    ...
+
+
+def bounds(
+    geometry: Dict, north_up: bool = ..., transform: Optional[Affine] = ...
+) -> Tuple[float, float, float, float]:
+    ...
+
+
+def geometry_window(
+    dataset: DatasetReader,
+    shapes: Iterable[Geometry],
+    pad_x: float = ...,
+    pad_y: float = ...,
+    north_up: Optional[bool] = ...,
+    rotated: Optional[bool] = ...,
+    pixel_precision: Optional[NumType] = ...,
+    boundless: bool = ...,
+) -> Window:
+    ...
+
+
+def is_valid_geom(geom: Geometry) -> bool:
+    ...
+
+
+def dataset_features(
+    src: DatasetReader,
+    bidx: Optional[int] = ...,
+    sampling: int = ...,
+    band: bool = ...,
+    as_mask: bool = ...,
+    with_nodata: bool = ...,
+    geographic: bool = ...,
+    precision: NumType = ...,
+) -> Iterable[Dict]:
+    ...
