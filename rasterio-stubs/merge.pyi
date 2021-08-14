@@ -1,9 +1,7 @@
-from pathlib import Path as Path
-from typing import Any
+from typing import Any, Callable, Dict, Tuple
 
 from affine import Affine
-from rasterio import windows as windows
-from rasterio.coords import disjoint_bounds as disjoint_bounds
+from numpy.typing import NDArray
 from rasterio.enums import Resampling
 
 logger: Any
@@ -15,7 +13,7 @@ def copy_max(merged_data, new_data, merged_mask, new_mask, **kwargs) -> None: ..
 
 MERGE_METHODS: Dict[str, Callable]
 
-MethodFunction = Callable[[]]
+MethodFunction = Callable
 
 def merge(
     datasets,

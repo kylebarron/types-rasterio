@@ -24,7 +24,7 @@ def shapes(
     mask: Optional[NDArray[np.bool_]] = ...,
     connectivity: int = ...,
     transform: Affine = ...,
-) -> Iterable[Geometry, T]: ...
+) -> Iterable[Tuple[Geometry, T]]: ...
 def sieve(
     source: NDArray[T],
     size: int,
