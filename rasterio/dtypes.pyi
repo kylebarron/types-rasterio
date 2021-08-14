@@ -1,4 +1,8 @@
-from typing import Any
+from typing import Any, Dict, Optional, Sequence, Tuple, Union
+
+from numpy.typing import ArrayLike, DTypeLike
+
+NumType = Union[int, float]
 
 bool_: str
 ubyte: str
@@ -15,15 +19,33 @@ complex_: str
 complex64: str
 complex128: str
 complex_int16: str
-dtype_fwd: Any
-dtype_rev: Any
-typename_fwd: Any
-typename_rev: Any
-dtype_ranges: Any
 
-def in_dtype_range(value, dtype): ...
-def check_dtype(dt): ...
-def get_minimum_dtype(values): ...
-def is_ndarray(array): ...
-def can_cast_dtype(values, dtype): ...
-def validate_dtype(values, valid_dtypes): ...
+dtype_fwd: Dict[int, Optional[str]]
+dtype_rev: Dict[Optional[str], int]
+typename_fwd: Dict[int, str]
+typename_rev: Dict[str, int]
+dtype_ranges: Dict[str, Tuple[NumType, NumType]]
+
+
+def in_dtype_range(value, dtype: DTypeLike) -> bool:
+    ...
+
+
+def check_dtype(dt: DTypeLike) -> bool:
+    ...
+
+
+def get_minimum_dtype(values: ArrayLike) -> str:
+    ...
+
+
+def is_ndarray(array: Any) -> bool:
+    ...
+
+
+def can_cast_dtype(values: ArrayLike, dtype: DTypeLike) -> bool:
+    ...
+
+
+def validate_dtype(values: ArrayLike, valid_dtypes: Sequence[DTypeLike]) -> bool:
+    ...
