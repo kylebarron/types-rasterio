@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "types-rasterio"
+version = "0.1.0"
+description = "Types for the rasterio package"
+authors = ["Kyle Barron <kylebarron2@gmail.com>"]
+license = "MIT"
+repository = "https://github.com/kylebarron/types-rasterio"
+packages = [
+    { include = "rasterio-stubs" }
+]
+include = ["CHANGELOG.md"]
+
+[tool.poetry.dependencies]
+python = "^3.6.1"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.910"
+pytest-mypy-plugins = "^1.7.0"
+pre-commit = "^2.14.0"
+twine = "^3.4.2"
+bumpversion = "^0.6.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
