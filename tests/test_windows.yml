@@ -1,0 +1,14 @@
+- case: instantiate_window
+  main: |
+    from rasterio.windows import Window
+    a: Window = Window(0, 0, 256, 256)
+    b: Window = Window.from_slices((10, 20), (30, 40))
+    c: Window = Window.from_slices(slice(10, 20), slice(30, 40))
+    d: Window = Window.from_slices(slice(None), slice(None), height=100, width=100)
+    e: Window = Window.from_slices(slice(10, -10), slice(10, -10), height=100, width=100)
+- case: window_height_width
+  main: |
+    from rasterio.windows import Window
+    write_window: Window = Window.from_slices((30, 269), (50, 313))
+    height: int = write_window.height
+    width: int = write_window.width
