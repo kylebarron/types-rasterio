@@ -1,5 +1,7 @@
-from typing import Any, Literal, Callable, Optional, Tuple, Union, Sequence, TypeVar
+from typing import Any, Callable, Literal, Optional, Sequence, Tuple, TypeVar, Union
+
 from affine import Affine
+
 from rasterio.control import GroundControlPoint
 
 NumType = Union[int, float]
@@ -32,9 +34,7 @@ class TransformMethodsMixin:
         ...
 
 
-def tastes_like_gdal(
-    seq: Union[Affine, Sextuple]
-) -> bool:
+def tastes_like_gdal(seq: Union[Affine, Sextuple]) -> bool:
     ...
 
 
@@ -42,20 +42,38 @@ def guard_transform(transform: Union[Affine, Any, Sextuple]) -> Affine:
     ...
 
 
-def from_origin(west: NumType, north: NumType, xsize: NumType, ysize: NumType) -> Affine:
+def from_origin(
+    west: NumType, north: NumType, xsize: NumType, ysize: NumType
+) -> Affine:
     ...
 
 
-def from_bounds(west: NumType, south: NumType, east: NumType, north: NumType, width: NumType, height: NumType):
+def from_bounds(
+    west: NumType,
+    south: NumType,
+    east: NumType,
+    north: NumType,
+    width: NumType,
+    height: NumType,
+) -> Affine:
     ...
 
 
-def array_bounds(height: NumType, width: NumType, transform: Affine) -> Tuple[float, float, float, float]:
+def array_bounds(
+    height: NumType, width: NumType, transform: Affine
+) -> Tuple[float, float, float, float]:
     ...
 
 
 IntOrSequenceInt = TypeVar('IntOrSequenceInt', Sequence[int], int)
-def xy(transform: Affine, rows: IntOrSequenceInt, cols: IntOrSequenceInt, offset: OffsetOptions = ...) -> Tuple[IntOrSequenceInt, IntOrSequenceInt]:
+
+
+def xy(
+    transform: Affine,
+    rows: IntOrSequenceInt,
+    cols: IntOrSequenceInt,
+    offset: OffsetOptions = ...,
+) -> Tuple[IntOrSequenceInt, IntOrSequenceInt]:
     ...
 
 
