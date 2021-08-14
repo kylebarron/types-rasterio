@@ -1,0 +1,30 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+# Default to Python 3
+default_language_version:
+  python: python3
+
+# Optionally both commit and push
+default_stages: [commit]
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.9.2
+    hooks:
+      - id: isort
+        language_version: python3
+
+  - repo: https://github.com/psf/black
+    rev: 21.7b0
+    hooks:
+      - id: black
+        language_version: python3

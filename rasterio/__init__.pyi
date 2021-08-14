@@ -22,7 +22,7 @@ def open(
     nodata: Any | None = ...,
     sharing: bool = ...,
     **kwargs
-):
+) -> Union[DatasetReader, DatasetWriter]:
     ...
 
 
