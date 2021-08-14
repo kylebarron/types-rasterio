@@ -31,9 +31,10 @@ jobs:
         run: |
           poetry install
 
-      - name: Run tests
-        run: |
-          poetry run pytest
+      # Comment out tests until we have tests to run
+      # - name: Run tests
+      #   run: |
+      #     poetry run pytest
 
       # Run pre-commit (only for python-3.8)
       - name: run pre-commit
