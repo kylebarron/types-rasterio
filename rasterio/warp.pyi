@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional, Sequence, Tuple, Union
+from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 
 from affine import Affine
 from numpy.typing import ArrayLike
@@ -8,8 +8,8 @@ from rasterio.crs import CRS
 from rasterio.enums import Resampling as Resampling
 from rasterio.rpc import RPC
 
-SUPPORTED_RESAMPLING: Any
-GDAL2_RESAMPLING: Any
+SUPPORTED_RESAMPLING: List[Resampling]
+GDAL2_RESAMPLING: List[Resampling]
 
 NumType = Union[int, float]
 CRSOrDict = Union[CRS, Dict[str, str]]
