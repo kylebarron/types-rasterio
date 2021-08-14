@@ -1,0 +1,3 @@
+from rasterio._env import GDALDataFinder as GDALDataFinder, PROJDataFinder as PROJDataFinder
+
+def env(ctx, key) -> None: ...

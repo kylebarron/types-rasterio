@@ -1,0 +1,3 @@
+from rasterio.errors import DriverRegistrationError as DriverRegistrationError, RasterioIOError as RasterioIOError
+
+def rm(path, yes, driver) -> None: ...
