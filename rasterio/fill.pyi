@@ -1,5 +1,14 @@
-from rasterio import dtypes as dtypes
-from rasterio.env import ensure_env as ensure_env
-from typing import Any
+from typing import Optional, TypeVar
 
-def fillnodata(image, mask: Any | None = ..., max_search_distance: float = ..., smoothing_iterations: int = ...): ...
+from numpy.typing import NBitBase, NDArray
+
+T = TypeVar('T', bound=NBitBase)
+
+
+def fillnodata(
+    image: NDArray[T],
+    mask: Optional[NDArray] = ...,
+    max_search_distance: float = ...,
+    smoothing_iterations: int = ...,
+) -> NDArray[T]:
+    ...
