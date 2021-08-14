@@ -1,14 +1,22 @@
 from collections import UserDict
-from rasterio.dtypes import uint8 as uint8
-from typing import Any
+from typing import Any, Dict
+
 
 class Profile(UserDict):
-    defaults: Any
-    def __init__(self, data=..., **kwds) -> None: ...
-    def __getitem__(self, key): ...
-    def __setitem__(self, key, val) -> None: ...
+    defaults: Dict
+
+    def __init__(self, data=..., **kwds) -> None:
+        ...
+
+    def __getitem__(self, key):
+        ...
+
+    def __setitem__(self, key, val) -> None:
+        ...
+
 
 class DefaultGTiffProfile(Profile):
-    defaults: Any
+    defaults: Dict[str, Any]
+
 
 default_gtiff_profile: Any
