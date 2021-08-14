@@ -1,8 +1,17 @@
-from rasterio.env import GDALVersion as GDALVersion, ensure_env as ensure_env, require_gdal_version as require_gdal_version
-from typing import Any
+from typing import Dict, Tuple, Union
 
-blacklist: Any
+from rasterio.path import Path
 
-def raster_driver_extensions(): ...
-def driver_from_extension(path): ...
-def is_blacklisted(name, mode): ...
+blacklist: Dict[str, Tuple[str, ...]]
+
+
+def raster_driver_extensions() -> Dict[str, str]:
+    ...
+
+
+def driver_from_extension(path: Union[str, Path]):
+    ...
+
+
+def is_blacklisted(name: str, mode: str) -> bool:
+    ...
