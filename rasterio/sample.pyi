@@ -1,5 +1,14 @@
-from rasterio.enums import MaskFlags as MaskFlags
-from rasterio.windows import Window as Window
-from typing import Any
+from typing import Iterable, Optional, Sequence, Tuple, Union
 
-def sample_gen(dataset, xy, indexes: Any | None = ..., masked: bool = ...) -> None: ...
+from numpy.typing import NDArray
+
+from rasterio.io import DatasetReader
+
+
+def sample_gen(
+    dataset: DatasetReader,
+    xy: Iterable[Tuple[int, int]],
+    indexes: Optional[Union[int, Sequence[int]]] = ...,
+    masked: bool = ...,
+) -> Iterable[NDArray]:
+    ...
