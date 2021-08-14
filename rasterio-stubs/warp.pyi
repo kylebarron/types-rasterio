@@ -2,7 +2,6 @@ from typing import Any, Dict, List, Optional, Sequence, Tuple, Union
 
 from affine import Affine
 from numpy.typing import ArrayLike
-
 from rasterio.control import GroundControlPoint
 from rasterio.crs import CRS
 from rasterio.enums import Resampling as Resampling
@@ -17,17 +16,13 @@ Resolution = Union[Tuple[NumType, NumType], NumType]
 Gcps = Sequence[GroundControlPoint]
 Rpcs = Union[RPC, Dict]
 
-
 def transform(
     src_crs: CRSOrDict,
     dst_crs: CRSOrDict,
     xs: ArrayLike,
     ys: ArrayLike,
     zs: Optional[ArrayLike] = ...,
-) -> Tuple[ArrayLike, ...]:
-    ...
-
-
+) -> Tuple[ArrayLike, ...]: ...
 def transform_geom(
     src_crs: CRSOrDict,
     dst_crs: CRSOrDict,
@@ -35,10 +30,7 @@ def transform_geom(
     antimeridian_cutting: bool = ...,
     antimeridian_offset: float = ...,
     precision: float = ...,
-) -> Dict:
-    ...
-
-
+) -> Dict: ...
 def transform_bounds(
     src_crs: CRSOrDict,
     dst_crs: CRSOrDict,
@@ -47,9 +39,7 @@ def transform_bounds(
     right: float,
     top: float,
     densify_pts: int = ...,
-) -> Tuple[float, float, float, float]:
-    ...
-
+) -> Tuple[float, float, float, float]: ...
 
 # TODO: should also allow a rasterio.Band object in addition to ArrayLike for the source
 # and destination
@@ -72,19 +62,13 @@ def reproject(
     init_dest_nodata: bool = ...,
     warp_mem_limit: int = ...,
     **kwargs
-) -> Tuple[ArrayLike, Affine]:
-    ...
-
-
+) -> Tuple[ArrayLike, Affine]: ...
 def aligned_target(
     transform: Affine,
     width: int,
     height: int,
     resolution: Resolution,
-) -> Tuple[Affine, int, int]:
-    ...
-
-
+) -> Tuple[Affine, int, int]: ...
 def calculate_default_transform(
     src_crs: CRSOrDict,
     dst_crs: CRSOrDict,
@@ -100,5 +84,4 @@ def calculate_default_transform(
     dst_width: Optional[int] = ...,
     dst_height: Optional[int] = ...,
     **kwargs: Any
-) -> Tuple[Affine, int, int]:
-    ...
+) -> Tuple[Affine, int, int]: ...

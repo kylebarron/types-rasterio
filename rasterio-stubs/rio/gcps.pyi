@@ -1,6 +1,7 @@
+from typing import Any
+
 from rasterio.rio import options as options
 from rasterio.warp import transform_geom as transform_geom
-from typing import Any
 
 sequence_opt: Any
 

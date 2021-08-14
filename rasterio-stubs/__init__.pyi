@@ -2,12 +2,10 @@ from typing import Any, Callable, NamedTuple, Optional, Sequence, Tuple, TypeVar
 
 from affine import Affine
 from numpy.typing import NBitBase, NDArray
-
 from rasterio.io import BufferedDatasetWriter, DatasetReader, DatasetWriter, MemoryFile
 
 Dataset = Union[DatasetReader, DatasetWriter, BufferedDatasetWriter, MemoryFile]
 Bands = Union[int, Sequence[int]]
-
 
 def open(
     fp,
@@ -22,9 +20,7 @@ def open(
     nodata: Any | None = ...,
     sharing: bool = ...,
     **kwargs
-) -> Union[DatasetReader, DatasetWriter]:
-    ...
-
+) -> Union[DatasetReader, DatasetWriter]: ...
 
 class Band(NamedTuple):
     ds: Dataset
@@ -32,13 +28,9 @@ class Band(NamedTuple):
     dtype: str
     shape: Tuple[int, ...]
 
-
-def band(ds: Dataset, bidx: Bands) -> Band:
-    ...
-
+def band(ds: Dataset, bidx: Bands) -> Band: ...
 
 T = TypeVar("T", bound=NBitBase)
-
 
 def pad(
     array: NDArray[T],
@@ -46,5 +38,4 @@ def pad(
     pad_width: int,
     mode: Optional[Union[str, Callable]] = ...,
     **kwargs: Any
-) -> Tuple[NDArray[T], Affine]:
-    ...
+) -> Tuple[NDArray[T], Affine]: ...

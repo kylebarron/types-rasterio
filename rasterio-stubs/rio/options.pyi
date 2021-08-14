@@ -1,5 +1,7 @@
-from rasterio.path import UnparsedPath as UnparsedPath, parse_path as parse_path
 from typing import Any
+
+from rasterio.path import UnparsedPath as UnparsedPath
+from rasterio.path import parse_path as parse_path
 
 logger: Any
 

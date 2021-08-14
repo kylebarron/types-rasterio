@@ -8,7 +8,6 @@ X = float
 Y = float
 Z = Optional[float]
 
-
 class GroundControlPointDict(TypedDict):
     id: Id
     info: Info
@@ -18,18 +17,15 @@ class GroundControlPointDict(TypedDict):
     y: Y
     z: Z
 
-
 class GroundControlPointGeometry(TypedDict):
-    type: Literal['Point']
+    type: Literal["Point"]
     coordinates: Sequence[float]
-
 
 class GroundControlPointFeature(TypedDict):
     id: Id
-    type: Literal['Feature']
+    type: Literal["Feature"]
     geometry: GroundControlPointGeometry
     properties: GroundControlPointDict
-
 
 class GroundControlPoint:
     id: Id
@@ -40,8 +36,6 @@ class GroundControlPoint:
     x: X
     y: Y
     z: Z
-
-
     def __init__(
         self,
         row: Row = ...,
@@ -51,12 +45,7 @@ class GroundControlPoint:
         z: Z = ...,
         id: Optional[Id] = ...,
         info: Info = ...,
-    ) -> None:
-        ...
-
-    def asdict(self) -> GroundControlPointDict:
-        ...
-
+    ) -> None: ...
+    def asdict(self) -> GroundControlPointDict: ...
     @property
-    def __geo_interface__(self) -> GroundControlPointFeature:
-        ...
+    def __geo_interface__(self) -> GroundControlPointFeature: ...

@@ -1,6 +1,5 @@
 from typing import Dict, Sequence
 
-
 class RPC:
     height_off: float
     height_scale: float
@@ -18,13 +17,7 @@ class RPC:
     samp_scale: float
     err_bias: float
     err_rand: float
-
-    def to_dict(self) -> Dict:
-        ...
-
-    def to_gdal(self) -> Dict[str, str]:
-        ...
-
+    def to_dict(self) -> Dict: ...
+    def to_gdal(self) -> Dict[str, str]: ...
     @classmethod
-    def from_gdal(cls, rpcs: Dict[str, str]):
-        ...
+    def from_gdal(cls, rpcs: Dict[str, str]): ...
