@@ -17,6 +17,7 @@ Resolution = Union[Tuple[NumType, NumType], NumType]
 Gcps = Sequence[GroundControlPoint]
 Rpcs = Union[RPC, Dict]
 
+
 def transform(
     src_crs: CRSOrDict,
     dst_crs: CRSOrDict,
@@ -66,7 +67,7 @@ def reproject(
     dst_resolution: Optional[Resolution] = ...,
     src_alpha: int = ...,
     dst_alpha: int = ...,
-    resampling: Resampling=...,
+    resampling: Resampling = ...,
     num_threads: int = ...,
     init_dest_nodata: bool = ...,
     warp_mem_limit: int = ...,
