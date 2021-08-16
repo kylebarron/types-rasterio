@@ -2,7 +2,11 @@
 
 Types for the rasterio package
 
+_A work in progress_
+
 ## Install
+
+_Not yet published to PyPI_
 
 ```
 pip install types-rasterio
