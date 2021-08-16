@@ -1,4 +1,4 @@
-from typing import Any, Dict, Literal, Optional, Sequence, Tuple, Union
+from typing import Dict, Literal, Optional, Sequence, Tuple, Union
 
 from affine import Affine
 from numpy.typing import NDArray
