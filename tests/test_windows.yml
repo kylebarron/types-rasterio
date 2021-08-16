@@ -12,3 +12,13 @@
     write_window: Window = Window.from_slices((30, 269), (50, 313))
     height: int = write_window.height
     width: int = write_window.width
+- case: window_utilities
+  main: |
+    from rasterio.windows import Window
+    from rasterio import windows
+    window1: Window = Window(10, 100, 490, 400)
+    window2: Window = Window(50, 10, 200, 140)
+    union: Window = windows.union(window1, window2)
+    ints: Window = windows.intersection(window1, window2)
+
+
