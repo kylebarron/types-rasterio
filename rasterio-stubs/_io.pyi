@@ -1,68 +1,77 @@
-from typing import Any, BinaryIO, Iterable, Optional, Sequence, Tuple, TypeVar, Union
+from typing import Any, BinaryIO, Iterable, Optional, Sequence, Tuple, Union
 
+from affine import Affine
 from numpy.typing import DTypeLike, NBitBase, NDArray
 from rasterio._base import DatasetBase
 from rasterio.control import GroundControlPoint
 from rasterio.enums import Resampling
 from rasterio.path import Path
 from rasterio.rpc import RPC
-from rasterio.transform import Affine
 from rasterio.windows import Window
 
-from .__types import Colormap, CRSInput, NumType, WindowInput
-
-Indexes = Optional[Union[int, Sequence[int]]]
-OutShape = Tuple[int, ...]
+from .__types import (
+    Colormap,
+    CRSInput,
+    Indexes,
+    NumpyDtypeT,
+    NumType,
+    ShapeND,
+    WindowInput,
+)
 
 def validate_resampling(resampling: Resampling) -> None: ...
 def _delete_dataset_if_exists(path: str) -> None: ...
 def in_dtype_range(value: NBitBase, dtype: DTypeLike) -> bool: ...
 
-T = TypeVar("T", bound=NBitBase)
-
 class DatasetReaderBase(DatasetBase):
+    # boundless is defined here as a positional argument, but not on a subclass
+    # (WarpedVRTReaderBase), which violates the Liskov substitution principle. So we add
+    # a * to declare it and all later args keyword-only
     def read(
         self,
-        indexes: Indexes = ...,
-        out: Optional[NDArray[T]] = ...,
+        indexes: Optional[Indexes] = ...,
+        out: Optional[NDArray[NumpyDtypeT]] = ...,
         window: Optional[WindowInput] = ...,
         masked: bool = ...,
-        out_shape: Optional[OutShape] = ...,
+        *,
         boundless: bool = ...,
+        out_shape: Optional[ShapeND] = ...,
         resampling: Resampling = ...,
-        fill_value: Optional[T] = ...,
+        fill_value: Optional[NumType] = ...,
         out_dtype: Optional[DTypeLike] = ...,
-    ) -> NDArray[T]: ...
+    ) -> NDArray[NumpyDtypeT]: ...
+    # Ditto about boundless
     def read_masks(
         self,
         indexes: Optional[Indexes] = ...,
-        out: Optional[NDArray[T]] = ...,
-        out_shape: Optional[OutShape] = ...,
+        out: Optional[NDArray[NumpyDtypeT]] = ...,
+        out_shape: Optional[ShapeND] = ...,
         window: Optional[WindowInput] = ...,
+        *,
         boundless: bool = ...,
         resampling: Resampling = ...,
-    ) -> NDArray[T]: ...
+    ) -> NDArray[NumpyDtypeT]: ...
     def _read(
         self,
         indexes: Indexes,
-        out: NDArray[T],
+        out: NDArray[NumpyDtypeT],
         window: Window,
         dtype: DTypeLike,
         masks: Any = ...,
         resampling: Resampling = ...,
-    ) -> NDArray[T]: ...
+    ) -> NDArray[NumpyDtypeT]: ...
     def dataset_mask(
         self,
-        out: NDArray[T] = ...,
-        out_shape: Optional[OutShape] = ...,
+        out: NDArray[NumpyDtypeT] = ...,
+        out_shape: Optional[ShapeND] = ...,
         window: Optional[WindowInput] = ...,
         boundless: bool = ...,
         resampling: Resampling = ...,
-    ) -> NDArray[T]: ...
+    ) -> NDArray[NumpyDtypeT]: ...
     def sample(
         self,
         xy: Sequence[Tuple[float, float]],
-        indexes: Optional[int, Sequence[int]] = ...,
+        indexes: Optional[Indexes] = ...,
         masked: bool = ...,
     ) -> Iterable[NDArray]: ...
 
@@ -135,7 +144,7 @@ class DatasetWriterBase(DatasetReaderBase):
         gcps=None,
         rpcs=None,
         sharing=False,
-        **kwargs
+        **kwargs,
     ):
         """Create a new dataset writer or updater
 
@@ -388,7 +397,7 @@ class DatasetWriterBase(DatasetReaderBase):
     def write(
         self,
         arr,
-        indexes: Optional[Union[int, Sequence[int]]] = ...,
+        indexes: Optional[Indexes] = ...,
         window: Optional[WindowInput] = ...,
     ) -> None: ...
     def write_band(
@@ -470,6 +479,6 @@ class BufferedDatasetWriterBase(DatasetWriterBase):
         gcps: Optional[GroundControlPoint] = ...,
         rpcs: Optional[RPC] = ...,
         sharing: bool = ...,
-        **kwargs: Any
+        **kwargs: Any,
     ): ...
     def stop(self) -> None: ...

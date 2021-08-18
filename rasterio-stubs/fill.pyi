@@ -1,12 +1,12 @@
-from typing import Optional, TypeVar
+from typing import Optional, Union
 
-from numpy.typing import NBitBase, NDArray
-
-T = TypeVar("T", bound=NBitBase)
+from numpy.ma import MaskedArray
+from numpy.typing import NDArray
+from rasterio.__types import NumpyDtypeT
 
 def fillnodata(
-    image: NDArray[T],
+    image: Union[NDArray[NumpyDtypeT], MaskedArray],
     mask: Optional[NDArray] = ...,
     max_search_distance: float = ...,
     smoothing_iterations: int = ...,
-) -> NDArray[T]: ...
+) -> NDArray[NumpyDtypeT]: ...

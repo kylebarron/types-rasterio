@@ -1,16 +1,15 @@
-from typing import Dict, Iterable, Optional, Sequence, Tuple, TypeVar, Union
+from typing import Dict, Iterable, Optional, Sequence, Tuple, Union
 
 import numpy as np
 from affine import Affine
-from numpy.typing import ArrayLike, NBitBase, NDArray
+from numpy.typing import ArrayLike, NDArray
+from rasterio.__types import NumpyDtypeT, NumType
 from rasterio.enums import MergeAlg as MergeAlg
 from rasterio.io import DatasetReader
 from rasterio.windows import Window as Window
 
 Geometry = Dict
 RasterSource = ArrayLike
-NumType = Union[int, float]
-T = TypeVar("T", bound=NBitBase)
 
 def geometry_mask(
     geometries: Iterable[Geometry],
@@ -20,29 +19,29 @@ def geometry_mask(
     invert: bool = ...,
 ) -> NDArray[np.bool_]: ...
 def shapes(
-    source: NDArray[T],
+    source: NDArray[NumpyDtypeT],
     mask: Optional[NDArray[np.bool_]] = ...,
     connectivity: int = ...,
     transform: Affine = ...,
-) -> Iterable[Tuple[Geometry, T]]: ...
+) -> Iterable[Tuple[Geometry, NumpyDtypeT]]: ...
 def sieve(
-    source: NDArray[T],
+    source: NDArray[NumpyDtypeT],
     size: int,
-    out: Optional[NDArray[T]] = ...,
+    out: Optional[NDArray[NumpyDtypeT]] = ...,
     mask: Optional[NDArray[np.bool_]] = ...,
     connectivity: int = ...,
-) -> NDArray[T]: ...
+) -> NDArray[NumpyDtypeT]: ...
 def rasterize(
-    shapes: Iterable[Union[Tuple[Geometry, T], Geometry]],
+    shapes: Iterable[Union[Tuple[Geometry, NumpyDtypeT], Geometry]],
     out_shape: Tuple[int, int] = ...,
     fill: int = ...,
-    out: Optional[NDArray[T]] = ...,
+    out: Optional[NDArray[NumpyDtypeT]] = ...,
     transform: Affine = ...,
     all_touched: bool = ...,
     merge_alg: MergeAlg = ...,
     default_value: int = ...,
-    dtype: T = ...,
-) -> NDArray[T]: ...
+    dtype: NumpyDtypeT = ...,
+) -> NDArray[NumpyDtypeT]: ...
 def bounds(
     geometry: Dict, north_up: bool = ..., transform: Optional[Affine] = ...
 ) -> Tuple[float, float, float, float]: ...

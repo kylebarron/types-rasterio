@@ -68,9 +68,22 @@ class MemoryFile(MemoryFileBase):
 
 class ZipMemoryFile(MemoryFile):
     def __init__(self, file_or_bytes: FileOrBytes = ...) -> None: ...
-    def open(
-        self, path: str, driver: Driver | None = ..., sharing: bool = ..., **kwargs: Any
-    ) -> DatasetReader: ...
+    # path as the first argument violates the Liskov substitution principle, because
+    # it's not on MemoryFile.read
+    # def open(
+    #     self,
+    #     path: str,
+    #     driver: Driver | None = ...,
+    #     width: Width | None = ...,
+    #     height: Height | None = ...,
+    #     count: Count | None = ...,
+    #     crs: CRSInput | None = ...,
+    #     transform: Affine | None = ...,
+    #     dtype: DTypeLike | None = ...,
+    #     nodata: Nodata | None = ...,
+    #     sharing: bool = ...,
+    #     **kwargs: Any
+    # ) -> DatasetReader: ...
 
 def get_writer_for_driver(
     driver: Driver,
