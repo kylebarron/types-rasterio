@@ -1,4 +1,4 @@
-from typing import Any, BinaryIO, Iterable, Optional, Sequence, Tuple, Union
+from typing import Any, BinaryIO, Iterable, Optional, Sequence, Tuple, Union, Generic
 
 from affine import Affine
 from numpy.typing import DTypeLike, NBitBase, NDArray
@@ -23,7 +23,7 @@ def validate_resampling(resampling: Resampling) -> None: ...
 def _delete_dataset_if_exists(path: str) -> None: ...
 def in_dtype_range(value: NBitBase, dtype: DTypeLike) -> bool: ...
 
-class DatasetReaderBase(DatasetBase):
+class DatasetReaderBase(DatasetBase, Generic[NumpyDtypeT]):
     # boundless is defined here as a positional argument, but not on a subclass
     # (WarpedVRTReaderBase), which violates the Liskov substitution principle. So we add
     # a * to declare it and all later args keyword-only
