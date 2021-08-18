@@ -5,8 +5,8 @@ from numpy.typing import DTypeLike, NDArray
 from rasterio.__types import (
     CRSInput,
     Indexes,
-    NDArrayGenericT,
     Nodata,
+    NumpyDtypeT,
     NumType,
     WindowInput,
 )
@@ -44,7 +44,7 @@ class WarpedVRTReaderBase(DatasetReaderBase):
     def read(
         self,
         indexes: Optional[Indexes] = ...,
-        out: Optional[NDArray[NDArrayGenericT]] = ...,
+        out: Optional[NDArray[NumpyDtypeT]] = ...,
         window: Optional[WindowInput] = ...,
         masked: bool = ...,
         out_shape: Optional[Sequence[int]] = ...,
@@ -52,16 +52,16 @@ class WarpedVRTReaderBase(DatasetReaderBase):
         fill_value: Optional[NumType] = ...,
         out_dtype: Optional[DTypeLike] = ...,
         **kwargs: Any
-    ) -> NDArray[NDArrayGenericT]: ...
+    ) -> NDArray[NumpyDtypeT]: ...
     def read_masks(
         self,
         indexes: Optional[Indexes] = ...,
-        out: Optional[NDArray[NDArrayGenericT]] = ...,
+        out: Optional[NDArray[NumpyDtypeT]] = ...,
         out_shape: Optional[Sequence[int]] = ...,
         window: Optional[WindowInput] = ...,
         resampling: Resampling = ...,
         **kwargs: Any
-    ) -> NDArray[NDArrayGenericT]: ...
+    ) -> NDArray[NumpyDtypeT]: ...
 
 def _transform_bounds(
     src_crs: CRSInput,

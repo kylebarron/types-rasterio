@@ -2,8 +2,8 @@ from typing import Dict, Literal, Optional, Sequence, Tuple, Union
 
 from affine import Affine
 from numpy.typing import NDArray
+from rasterio.__types import NumType
 
-NumType = Union[int, float]
 Precision = Optional[NumType]
 Bounds = Tuple[float, float, float, float]
 Ranges = Tuple[Tuple[float, float], Tuple[float, float]]
