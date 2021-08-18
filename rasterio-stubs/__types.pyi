@@ -1,6 +1,6 @@
-from typing import Dict, Tuple, Union, Sequence, TypeVar
-from numpy.typing import NBitBase
+from typing import Dict, Sequence, Tuple, TypeVar, Union
 
+from numpy.typing import NBitBase
 from rasterio.crs import CRS
 from rasterio.windows import Window
 
