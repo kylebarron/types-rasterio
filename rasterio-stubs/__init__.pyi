@@ -1,4 +1,4 @@
-from typing import Any, Callable, NamedTuple, Optional, Sequence, Tuple, Union
+from typing import Any, Callable, NamedTuple, Optional, Sequence, Tuple, Union, overload
 
 from affine import Affine
 from numpy.typing import DTypeLike, NDArray
@@ -17,6 +17,22 @@ from rasterio.io import BufferedDatasetWriter, DatasetReader, DatasetWriter, Mem
 
 Bands = Union[int, Sequence[int]]
 
+@overload
+def open(
+    fp,
+    mode: str = "w",
+    driver: Driver | None = ...,
+    width: Width | None = ...,
+    height: Height | None = ...,
+    count: Count | None = ...,
+    crs: CRSInput | None = ...,
+    transform: Affine | None = ...,
+    dtype: DTypeLike | None = ...,
+    nodata: Nodata | None = ...,
+    sharing: bool = ...,
+    **kwargs
+) -> DatasetWriter: ...
+@overload
 def open(
     fp,
     mode: str = ...,
@@ -30,7 +46,7 @@ def open(
     nodata: Nodata | None = ...,
     sharing: bool = ...,
     **kwargs
-) -> Union[DatasetReader, DatasetWriter]: ...
+) -> DatasetReader: ...
 
 class Band(NamedTuple):
     ds: AnyDataset
