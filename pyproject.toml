@@ -11,7 +11,7 @@ packages = [
 include = ["CHANGELOG.md"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 types-affine = "^0.1.0"
 numpy = "^1.21.0"
 
@@ -21,6 +21,8 @@ pytest-mypy-plugins = "^1.7.0"
 pre-commit = "^2.14.0"
 twine = "^3.4.2"
 bumpversion = "^0.6.0"
+# Do not fail with "Package docutils (0.21.post1) not found.".
+docutils = "!=0.21"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
